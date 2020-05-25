@@ -1,5 +1,6 @@
 # Corona-Tracker
 Tracking the impact of COVID-19 Globally
+Made using React JS
 
 
 ## Installation

@@ -9,7 +9,7 @@ npm install --save corona-tracker
 
 
 ## Summary
-<img src="https://github.com/hrshtpnt/Corona-Tracker/blob/master/src/images/screenshots/first-section.PNG" align="center" width="500">
+<img src="https://github.com/hrshtpnt/Corona-Tracker/blob/master/src/images/screenshots/first-section.PNG" align="center" width="800">
 
 ## Graphical Representation
 <img src="https://github.com/hrshtpnt/Corona-Tracker/blob/master/src/images/screenshots/graph1.PNG" align="center" width="800">

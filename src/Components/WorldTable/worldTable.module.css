@@ -17,6 +17,9 @@
   padding: 1%;
   flex-wrap: wrap;
 }
+.rootTable {
+  width: 100%;
+}
 .rootButton {
   margin-right: 2% !important;
 }

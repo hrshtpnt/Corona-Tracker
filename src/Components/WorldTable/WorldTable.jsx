@@ -199,7 +199,7 @@ function StickyHeadTable() {
           Clear Sort
         </Button>
       </div>
-      <div>
+      <div className={styles.rootTable}>
         <Paper className={classes.root}>
           <TableContainer className={classes.container}>
             <Table stickyHeader aria-label="sticky table">

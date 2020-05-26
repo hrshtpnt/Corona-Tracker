@@ -18,10 +18,10 @@
     "static/media/sort-black.svg": "/static/media/sort-black.f94dfe67.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.5948f688.js",
-    "static/css/2.af3c1da9.chunk.css",
-    "static/js/2.b219822d.chunk.js",
-    "static/css/main.81103f0a.chunk.css",
-    "static/js/main.082104c4.chunk.js"
+    "/Corona-Tracker/static/js/runtime-main.5948f688.js",
+    "/Corona-Tracker/static/css/2.af3c1da9.chunk.css",
+    "/Corona-Tracker/static/js/2.b219822d.chunk.js",
+    "/Corona-Tracker/static/css/main.81103f0a.chunk.css",
+    "/Corona-Tracker/static/js/main.082104c4.chunk.js"
   ]
 }

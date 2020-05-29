@@ -6,6 +6,7 @@ h3 {
   justify-content: center;
   align-items: center;
   width: 70%;
+  min-width: 250px;
   margin-bottom: 50px;
   flex-wrap: wrap;
 }

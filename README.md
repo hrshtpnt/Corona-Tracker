@@ -2,6 +2,8 @@
 Tracking the impact of COVID-19 Globally
 Made using React JS
 
+# Deployed:
+https://hrshtpnt.github.io/Corona-Tracker/
 
 ## Summary
 <img src="https://github.com/hrshtpnt/Corona-Tracker/blob/master/src/images/screenshots/first-section.PNG" align="center" width="800">

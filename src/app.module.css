@@ -10,3 +10,8 @@ body {
   flex-direction: column;
   margin-top: 20px;
 }
+
+.coronaImage {
+  display: flex;
+  margin: 10px;
+}

@@ -1,7 +1,7 @@
 import axios from "axios";
 const url = "https://covid19.mathdro.id/api";
-
 const tableAPI = "https://sharadcodes.github.io/c-data/data/world.json";
+const IndianStates = "https://api.covid19india.org/state_district_wise.json";
 
 export const fetchData = async (country = "") => {
   let tempUrl = url;
@@ -49,7 +49,6 @@ export const fetchCountries = async () => {
 export const fetchTableData = async () => {
   try {
     const data = await axios.get(tableAPI);
-    console.log(data.data);
     const modifiedData = data.data.map((index) => ({
       ...index,
       casesSummary:
@@ -66,3 +65,20 @@ export const fetchTableData = async () => {
     console.log("table API failed with " + e);
   }
 };
+  export const fetchIndiaData = async () => {
+    try {
+      const data = await axios.get(IndianStates);
+      const modifiedData = Object.entries(data.data).map((e) => ( { [e[0]]: e[1] } ));
+      const statesList = [];
+      for (let statesData of modifiedData) {
+        for (let stateName in statesData) {
+          statesList.push(stateName);
+        }
+      }
+      statesList.shift();
+      return [modifiedData, statesList];
+    }
+    catch(e) {
+      console.log('India API failed to fetch data')
+    }
+  };

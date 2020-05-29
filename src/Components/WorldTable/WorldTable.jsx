@@ -14,6 +14,7 @@ import {
 import { fetchTableData } from "../../api/index";
 import styles from "./worldTable.module.css";
 import sortImage from "../../images/sort-black.svg";
+import classnames from "classname";
 
 const columns = [
   {
@@ -157,47 +158,49 @@ function StickyHeadTable() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.root}>
-        <h5 className={styles.sortText}>
-          <img src={sortImage} alt="sort" />
-          Sort
-        </h5>
-        <Button
-          size="small"
-          variant="outlined"
-          color="secondary"
-          className={styles.rootButton}
-          onClick={handleSortByCases}
-        >
-          Cases
-        </Button>
-        <Button
-          size="small"
-          variant="outlined"
-          color="secondary"
-          className={styles.rootButton}
-          onClick={handleSortByDeaths}
-        >
-          Deaths
-        </Button>
-        <Button
-          size="small"
-          variant="outlined"
-          color="primary"
-          className={styles.rootButton}
-          onClick={handleSortByRecovered}
-        >
-          Recovered
-        </Button>
-        <Button
-          size="small"
-          variant="outlined"
-          color="primary"
-          className={styles.rootButton}
-          onClick={clearSort}
-        >
-          Clear Sort
-        </Button>
+      <div className={classnames(styles.width100, "row")}>
+        <div className={classnames(styles.root, "col-sm-12")}>
+          <h6 className={styles.sortText}>
+            <img src={sortImage} alt="sort" className={styles.sortImage} />
+            Sort
+          </h6>
+          <Button
+            size="small"
+            variant="outlined"
+            color="secondary"
+            className={styles.rootButton}
+            onClick={handleSortByCases}
+          >
+            Cases
+          </Button>
+          <Button
+            size="small"
+            variant="outlined"
+            color="secondary"
+            className={styles.rootButton}
+            onClick={handleSortByDeaths}
+          >
+            Deaths
+          </Button>
+          <Button
+            size="small"
+            variant="outlined"
+            color="primary"
+            className={styles.rootButton}
+            onClick={handleSortByRecovered}
+          >
+            Recovered
+          </Button>
+          <Button
+            size="small"
+            variant="outlined"
+            color="primary"
+            className={styles.rootButton}
+            onClick={clearSort}
+          >
+            Clear Sort
+          </Button>
+        </div>
       </div>
       <div className={styles.rootTable}>
         <Paper className={classes.root}>

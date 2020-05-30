@@ -71,14 +71,14 @@ function IndiaStatus() {
       <React.Fragment>
       <div className={styles.stateDataSection}>
         <Divider />
-        {stateTableData.length === 0 && <Button
+        {stateTableData && stateTableData.length === 0 && <Button
           variant="outlined"
           color="secondary"
           className={styles.buttonShowStateData}
           onClick={handleShowStateData} >State Summary
         </Button>}
         {loaders.loadingTextSummary && <p>Loading...</p>}
-        {stateTableData.length>0 && <IndianStatesTable statesData={stateTableData}/>}
+        {stateTableData && stateTableData.length>0 && <IndianStatesTable statesData={stateTableData}/>}
         <br/>
         <Divider />
       </div>

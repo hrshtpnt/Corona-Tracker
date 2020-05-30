@@ -8,7 +8,7 @@ function IndianStatesTable({statesData}) {
       <Table stickyHeader aria-label="sticky table">
         <TableHead>
           <TableRow>
-            <TableCell>State/UT</TableCell>
+            <TableCell>State / UT</TableCell>
             <TableCell align="right">Confirmed</TableCell>
             <TableCell align="right">Recovered</TableCell>
             <TableCell align="right">Deaths</TableCell>

@@ -2,3 +2,9 @@
   min-width: 360px;
   max-height: 500px;
 }
+
+@media only screen and (max-width: 900px) {
+    .tableView {
+        width: 95% !important;
+    }
+}

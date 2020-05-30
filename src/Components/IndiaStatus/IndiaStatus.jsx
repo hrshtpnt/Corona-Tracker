@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { fetchIndiaData, fetchIndianStatesReport } from "../../api/index";
 import { FormControl, NativeSelect, InputLabel } from "@material-ui/core";
 import styles from "./IndiaStatus.module.css";
@@ -21,13 +21,7 @@ function IndiaStatus() {
   });
 
   const [stateTableData, setStateTableData] = useState([]);
-  const [loadingText, setLoadingText] = useState(false);
-  useEffect(() => {
-    const fetchAPI = async () => {
-      setIndiaData(await fetchIndiaData());
-    };
-    fetchAPI();
-  }, []);
+  const [loaders, setLoaders] = useState({loadingTextSummary: false, loadingTextDetailed: false});
 
   const handleStateChange = (indianState, pos) => {
     //indiaData[0][2]['Andhra Pradesh'].districtData
@@ -57,33 +51,47 @@ function IndiaStatus() {
   };
 
   const handleShowStateData = () => {
-    setLoadingText(true);
+    setLoaders({...loaders, loadingTextSummary: true});
     const fetchAPI = async () => {
       setStateTableData(await fetchIndianStatesReport());
-      setLoadingText(false);
+      setLoaders({...loaders, loadingTextSummary: false});
     };
     fetchAPI();
   }
 
-  if (indiaData === undefined) {
-    return <p>Loading ...</p>;
-  } else {
+  const handleShowDetailed = () => {
+    setLoaders({...loaders, loadingTextDetailed: true});
+    const fetchAPI = async () => {
+      setIndiaData(await fetchIndiaData());
+      setLoaders({...loaders, loadingTextDetailed: false});
+    };
+    fetchAPI();
+  }
     return (
       <React.Fragment>
       <div className={styles.stateDataSection}>
         <Divider />
-        <Button
+        {stateTableData.length === 0 && <Button
           variant="outlined"
           color="secondary"
           className={styles.buttonShowStateData}
-          onClick={handleShowStateData} >show State Data
-        </Button>
-        {loadingText && <p>Loading...</p>}
+          onClick={handleShowStateData} >State Summary
+        </Button>}
+        {loaders.loadingTextSummary && <p>Loading...</p>}
         {stateTableData.length>0 && <IndianStatesTable statesData={stateTableData}/>}
         <br/>
         <Divider />
       </div>
-      <div className={styles.indiaStatus}>
+      {!indiaData &&
+      <Button
+          variant="outlined"
+          color="secondary"
+          className={styles.buttonShowStateData}
+          onClick={handleShowDetailed}>State Detailed
+        </Button>
+        }
+        {loaders.loadingTextDetailed && <p>Loading...</p>}
+      {indiaData && <div className={styles.indiaStatus}>
         <div className={classnames(styles.indiaStatus, styles.selectedDataHeading)}>
           <FormControl className={styles.formControl}>
             <InputLabel shrink id="state">
@@ -130,9 +138,9 @@ function IndiaStatus() {
           <MiniCard count={coronaInfo.deaths} statusType={'deaths'} />
         </div>}
       </div>
+      }
       </React.Fragment>
     );
-  }
 }
 
 export default IndiaStatus;

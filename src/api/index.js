@@ -53,11 +53,13 @@ export const fetchTableData = async () => {
       ...index,
       casesSummary:
         index.todayCases !== 0
-          ? `${index.cases}+${index.todayCases} Today`
+          ? `${index.cases}
+          +${index.todayCases} Today`
           : index.cases,
       deathSummary:
         index.todayDeaths !== 0
-          ? `${index.deaths}+${index.todayDeaths} Today`
+          ? `${index.deaths}
+          +${index.todayDeaths} Today`
           : index.deaths,
     }));
     return modifiedData;

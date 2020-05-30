@@ -36,3 +36,10 @@ h3 {
 .buttonShowStateData {
   margin: 20px !important;
 }
+
+
+@media only screen and (max-width: 900px) {
+  .stateDataSection {
+    width: 95%;
+  }
+}

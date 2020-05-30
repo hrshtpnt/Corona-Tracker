@@ -109,7 +109,7 @@ const useStyles = makeStyles({
 function StickyHeadTable() {
   const classes = useStyles();
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(100);
+  const [rowsPerPage, setRowsPerPage] = useState(20);
   const [rows, setRows] = useState([]);
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -155,7 +155,9 @@ function StickyHeadTable() {
   const clearSort = () => {
     fetchWorldData();
   };
-
+if (rows === []) {
+  return <p>Loading...</p>;
+  }
   return (
     <div className={styles.container}>
       <div className={classnames(styles.width100, "row")}>
@@ -247,7 +249,7 @@ function StickyHeadTable() {
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[100, 150, 300]}
+            rowsPerPageOptions={[20,50,100,150,200,300]}
             component="div"
             count={rows.length}
             rowsPerPage={rowsPerPage}

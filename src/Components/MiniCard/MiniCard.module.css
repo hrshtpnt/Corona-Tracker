@@ -1,0 +1,32 @@
+.tiles {
+    width: 100px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    font-size: medium;
+    border-radius: 5px;
+    margin: 2%;
+    flex-wrap: wrap;
+    font-weight: bold;
+  }
+  .type {
+    font-weight: bold;
+  }
+  .active {
+    background: rgba(250, 0, 0, 0.1);
+    color: crimson;
+  }
+  .confirmed {
+    background: rgba(0, 0, 250, 0.1);
+    color: #5555dc;
+  }
+  .recovered {
+    background: rgba(0, 250, 0, 0.1);
+    color: #219021;
+  }
+  .deaths {
+    background: rgba(134, 134, 134, 0.1);
+    color: #424242;
+  }

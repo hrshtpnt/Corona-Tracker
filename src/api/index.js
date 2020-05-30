@@ -2,7 +2,7 @@ import axios from "axios";
 const url = "https://covid19.mathdro.id/api";
 const tableAPI = "https://sharadcodes.github.io/c-data/data/world.json";
 const IndianDistricts = "https://api.covid19india.org/state_district_wise.json";
-const IndianStates = "http://covid19-india-adhikansh.herokuapp.com/states";
+const IndianStates = "https://covid19-india-adhikansh.herokuapp.com/states";
 export const fetchData = async (country = "") => {
   let tempUrl = url;
   if (country !== "") {

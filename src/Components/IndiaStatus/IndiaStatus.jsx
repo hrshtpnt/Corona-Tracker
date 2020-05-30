@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { fetchIndiaData } from "../../api/index";
+import { fetchIndiaData, fetchIndianStatesReport } from "../../api/index";
 import { FormControl, NativeSelect, InputLabel } from "@material-ui/core";
 import styles from "./IndiaStatus.module.css";
 import classnames from "classname";
 import Divider from '@material-ui/core/Divider';
 import MiniCard from '../MiniCard/MiniCard';
+import IndianStatesTable from '../IndianStatesTable/IndianStatesTable';
+import {Button} from "@material-ui/core";
 
 function IndiaStatus() {
   const [indiaData, setIndiaData] = useState();
@@ -17,6 +19,9 @@ function IndiaStatus() {
     deaths: 0,
     confirmed: 0,
   });
+
+  const [stateTableData, setStateTableData] = useState([]);
+  const [loadingText, setLoadingText] = useState(false);
   useEffect(() => {
     const fetchAPI = async () => {
       setIndiaData(await fetchIndiaData());
@@ -51,6 +56,15 @@ function IndiaStatus() {
     }
   };
 
+  const handleShowStateData = () => {
+    setLoadingText(true);
+    const fetchAPI = async () => {
+      setStateTableData(await fetchIndianStatesReport());
+      setLoadingText(false);
+    };
+    fetchAPI();
+  }
+
   if (indiaData === undefined) {
     return <p>Loading ...</p>;
   } else {
@@ -58,7 +72,15 @@ function IndiaStatus() {
       <React.Fragment>
       <div className={styles.stateDataSection}>
         <Divider />
-        Show State Data
+        <Button
+          variant="outlined"
+          color="secondary"
+          className={styles.buttonShowStateData}
+          onClick={handleShowStateData} >show State Data
+        </Button>
+        {loadingText && <p>Loading...</p>}
+        {stateTableData.length>0 && <IndianStatesTable statesData={stateTableData}/>}
+        <br/>
         <Divider />
       </div>
       <div className={styles.indiaStatus}>

@@ -7,6 +7,7 @@ import {
   TableCell,
   TableContainer,
   TableHead,
+  Divider,
   TablePagination,
   TableRow,
   Button,
@@ -21,79 +22,79 @@ const columns = [
     id: "country",
     label: "Country",
     minWidth: 50,
-    align: "center",
+    align: "left",
   },
   {
     id: "casesSummary",
     label: "Total Cases",
     minWidth: 50,
-    align: "center",
+    align: "right",
   },
   {
     id: "deathSummary",
     label: "Deaths",
     minWidth: 50,
-    align: "center",
+    align: "right",
   },
   {
     id: "recovered",
     label: "Recovered",
     minWidth: 50,
-    align: "center",
+    align: "right",
   },
   {
     id: "active",
     label: "Active",
     minWidth: 50,
-    align: "center",
+    align: "right",
   },
   {
     id: "critical",
     label: "Critical",
     minWidth: 50,
-    align: "center",
+    align: "right",
   },
   {
     id: "tests",
     label: "Tests",
     minWidth: 50,
-    align: "center",
+    align: "right",
   },
   {
     id: "casesPerOneMillion",
     label: "Cases/Million",
     minWidth: 50,
-    align: "center",
+    align: "right",
   },
   {
     id: "deathsPerOneMillion",
     label: "Deaths/Million",
     minWidth: 50,
-    align: "center",
+    align: "right",
   },
   {
     id: "recoveredPerOneMillion",
     label: "Recovered/Million",
     minWidth: 50,
-    align: "center",
+    align: "right",
   },
   {
     id: "activePerOneMillion",
     label: "Active/Million",
     minWidth: 50,
-    align: "center",
+    align: "right",
   },
   {
     id: "criticalPerOneMillion",
     label: "Critical/Million",
     minWidth: 50,
-    align: "center",
+    align: "right",
   },
   {
     id: "testsPerOneMillion",
     label: "Tests/Million",
     minWidth: 50,
-    align: "center",
+    align: "right",
   },
 ];
 
@@ -159,6 +160,9 @@ if (rows === []) {
   return <p>Loading...</p>;
   }
   return (
+    <React.Fragment>
+    <Divider className={styles.width70}/>
+    <br />
     <div className={styles.container}>
       <div className={classnames(styles.width100, "row")}>
         <div className={classnames(styles.root, "col-sm-12")}>
@@ -260,6 +264,7 @@ if (rows === []) {
         </Paper>
       </div>
     </div>
+    </React.Fragment>
   );
 }
 

@@ -11,6 +11,9 @@
 .width100 {
   width: 100%;
 }
+.width70 {
+  width: 70%;
+}
 .root {
   width: 100%;
   display: flex;

@@ -1,8 +1,8 @@
 import axios from "axios";
 const url = "https://covid19.mathdro.id/api";
 const tableAPI = "https://sharadcodes.github.io/c-data/data/world.json";
-const IndianStates = "https://api.covid19india.org/state_district_wise.json";
-
+const IndianDistricts = "https://api.covid19india.org/state_district_wise.json";
+const IndianStates = "http://covid19-india-adhikansh.herokuapp.com/states";
 export const fetchData = async (country = "") => {
   let tempUrl = url;
   if (country !== "") {
@@ -65,20 +65,30 @@ export const fetchTableData = async () => {
     console.log("table API failed with " + e);
   }
 };
-  export const fetchIndiaData = async () => {
-    try {
-      const data = await axios.get(IndianStates);
-      const modifiedData = Object.entries(data.data).map((e) => ( { [e[0]]: e[1] } ));
-      const statesList = [];
-      for (let statesData of modifiedData) {
-        for (let stateName in statesData) {
-          statesList.push(stateName);
-        }
+export const fetchIndiaData = async () => {
+  try {
+    const data = await axios.get(IndianDistricts);
+    const modifiedData = Object.entries(data.data).map((e) => ( { [e[0]]: e[1] } ));
+    const statesList = [];
+    for (let statesData of modifiedData) {
+      for (let stateName in statesData) {
+        statesList.push(stateName);
       }
-      statesList.shift();
-      return [modifiedData, statesList];
     }
-    catch(e) {
-      console.log('India API failed to fetch data')
-    }
-  };
+    statesList.shift();
+    return [modifiedData, statesList];
+  }
+  catch(e) {
+    console.log('India API failed to fetch data')
+  }
+};
+
+export const fetchIndianStatesReport = async() => {
+  try {
+    const data = await axios.get(IndianStates);
+    return data.data.state;
+  }
+  catch(e){ 
+    console.log('fetch indian state report API failed');
+  }
+}

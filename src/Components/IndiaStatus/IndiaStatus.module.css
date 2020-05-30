@@ -33,3 +33,6 @@ h3 {
     text-align: center;
     width: 70%;
 }
+.buttonShowStateData {
+  margin: 20px !important;
+}

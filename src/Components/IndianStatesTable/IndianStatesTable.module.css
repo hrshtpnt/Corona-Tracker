@@ -7,4 +7,7 @@
     .tableView {
         width: 100% !important;
     }
+    .MuiTableCell-root {
+      padding: 5px;
+    }
 }

@@ -50,7 +50,7 @@ function IndiaStatus() {
     }
   };
 
-  const handleShowStateData = () => {
+  const handleShowSummary = () => {
     setLoaders({...loaders, loadingTextSummary: true});
     const fetchAPI = async () => {
       setStateTableData(await fetchIndianStatesReport());
@@ -75,10 +75,15 @@ function IndiaStatus() {
           variant="outlined"
           color="secondary"
           className={styles.buttonShowStateData}
-          onClick={handleShowStateData} >State Summary
+          onClick={handleShowSummary} >State Summary
         </Button>}
         {loaders.loadingTextSummary && <p>Loading...</p>}
-        {stateTableData && stateTableData.length>0 && <IndianStatesTable statesData={stateTableData}/>}
+        { 
+        stateTableData && stateTableData.length>0 &&
+        <React.Fragment>
+        <br/>
+        <IndianStatesTable statesData={stateTableData}/>
+        </React.Fragment>}
         <br/>
         <Divider />
       </div>

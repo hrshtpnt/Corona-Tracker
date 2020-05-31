@@ -26,7 +26,7 @@ const columns = [
   },
   {
     id: "casesSummary",
-    label: "Total Cases",
+    label: "Cases",
     minWidth: 50,
     align: "right",
   },
@@ -211,7 +211,7 @@ if (rows === []) {
       <div className={styles.rootTable}>
         <Paper className={classes.root}>
           <TableContainer className={classes.container}>
-            <Table stickyHeader aria-label="sticky table">
+            <Table stickyHeader aria-label="sticky table" size="small">
               <TableHead>
                 <TableRow>
                   {columns.map((column) => (

@@ -5,7 +5,7 @@ import styles from './IndianStatesTable.module.css';
 function IndianStatesTable({statesData}) {
   return (
     <TableContainer component={Paper} className={styles.tableView}>
-      <Table stickyHeader aria-label="sticky table">
+      <Table stickyHeader aria-label="sticky table" size="small">
         <TableHead>
           <TableRow>
             <TableCell>State / UT</TableCell>
@@ -17,7 +17,7 @@ function IndianStatesTable({statesData}) {
         </TableHead>
         <TableBody>
           {statesData.map((row) => (
-            <TableRow key={row._id}>
+            <TableRow key={row._id} >
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>

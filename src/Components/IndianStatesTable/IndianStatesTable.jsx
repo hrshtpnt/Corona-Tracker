@@ -9,7 +9,7 @@ function IndianStatesTable({statesData}) {
         <TableHead>
           <TableRow>
             <TableCell>State / UT</TableCell>
-            <TableCell align="right">Confirmed</TableCell>
+            <TableCell align="right">Active</TableCell>
             <TableCell align="right">Recovered</TableCell>
             <TableCell align="right">Deaths</TableCell>
             <TableCell align="right">Total</TableCell>
@@ -21,7 +21,7 @@ function IndianStatesTable({statesData}) {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.confirmed}</TableCell>
+              <TableCell align="right">{row.active}</TableCell>
               <TableCell align="right">{row.cured}</TableCell>
               <TableCell align="right">{row.death}</TableCell>
               <TableCell align="right">{row.total}</TableCell>

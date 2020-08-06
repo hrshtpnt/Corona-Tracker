@@ -1,8 +1,27 @@
 import axios from "axios";
 const url = "https://covid19.mathdro.id/api";
-const tableAPI = "http://sharadcodes.github.io/c-data/data//world.json";
+const tableAPI = "https://sharad-gql-covid19.herokuapp.com/graphql";
 const IndianDistricts = "https://api.covid19india.org/state_district_wise.json";
 const IndianStates = "https://api.rootnet.in/covid19-in/stats/latest";
+
+const queryString  = `{
+            countries {
+                country    
+                countryInfo {
+                  lat
+                  long
+                }
+                cases
+                todayCases
+                deaths
+                todayDeaths
+                recovered
+                active
+                critical
+                casesPerOneMillion
+                deathsPerOneMillion
+            } 
+        }`
 export const fetchData = async (country = "") => {
   let tempUrl = url;
   if (country !== "") {
@@ -48,29 +67,9 @@ export const fetchCountries = async () => {
 
 export const fetchTableData = async () => {
   try {
-    const response = await axios.post(
-      "https://sharad-gql-covid19.herokuapp.com/graphql",
-      {
-        query: `{
-            countries {
-                country    
-                countryInfo {
-                  lat
-                  long
-                }
-                cases
-                todayCases
-                deaths
-                todayDeaths
-                recovered
-                active
-                critical
-                casesPerOneMillion
-                deathsPerOneMillion
-            } 
-        }`,
-      }
-    );
+    const response = await axios.post(tableAPI, {
+      query: queryString,
+    });
     return response.data.data.countries;
   } catch (e) {
     console.log("table API failed with " + e);

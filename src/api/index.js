@@ -1,8 +1,8 @@
 import axios from "axios";
 const url = "https://covid19.mathdro.id/api";
-const tableAPI = "https://sharadcodes.github.io/c-data/data/world.json";
+const tableAPI = "http://sharadcodes.github.io/c-data/data//world.json";
 const IndianDistricts = "https://api.covid19india.org/state_district_wise.json";
-const IndianStates = "https://covid19-india-adhikansh.herokuapp.com/states";
+const IndianStates = "https://api.rootnet.in/covid19-in/stats/latest";
 export const fetchData = async (country = "") => {
   let tempUrl = url;
   if (country !== "") {
@@ -48,21 +48,30 @@ export const fetchCountries = async () => {
 
 export const fetchTableData = async () => {
   try {
-    const data = await axios.get(tableAPI);
-    const modifiedData = data.data.map((index) => ({
-      ...index,
-      casesSummary:
-        index.todayCases !== 0
-          ? `${index.cases}
-          +${index.todayCases} Today`
-          : index.cases,
-      deathSummary:
-        index.todayDeaths !== 0
-          ? `${index.deaths}
-          +${index.todayDeaths} Today`
-          : index.deaths,
-    }));
-    return modifiedData;
+    const response = await axios.post(
+      "https://sharad-gql-covid19.herokuapp.com/graphql",
+      {
+        query: `{
+            countries {
+                country    
+                countryInfo {
+                  lat
+                  long
+                }
+                cases
+                todayCases
+                deaths
+                todayDeaths
+                recovered
+                active
+                critical
+                casesPerOneMillion
+                deathsPerOneMillion
+            } 
+        }`,
+      }
+    );
+    return response.data.data.countries;
   } catch (e) {
     console.log("table API failed with " + e);
   }
@@ -70,7 +79,9 @@ export const fetchTableData = async () => {
 export const fetchIndiaData = async () => {
   try {
     const data = await axios.get(IndianDistricts);
-    const modifiedData = Object.entries(data.data).map((e) => ( { [e[0]]: e[1] } ));
+    const modifiedData = Object.entries(data.data).map((e) => ({
+      [e[0]]: e[1],
+    }));
     const statesList = [];
     for (let statesData of modifiedData) {
       for (let stateName in statesData) {
@@ -79,18 +90,17 @@ export const fetchIndiaData = async () => {
     }
     statesList.shift();
     return [modifiedData, statesList];
-  }
-  catch(e) {
-    console.log('India API failed to fetch data')
+  } catch (e) {
+    console.log("India API failed to fetch data");
   }
 };
 
-export const fetchIndianStatesReport = async() => {
+export const fetchIndianStatesReport = async () => {
   try {
     const data = await axios.get(IndianStates);
-    return data.data.state;
+    console.log(data.data.data.regional)
+    return data.data.data.regional;
+  } catch (e) {
+    console.log("fetch indian state report API failed");
   }
-  catch(e){ 
-    console.log('fetch indian state report API failed');
-  }
-}
+};

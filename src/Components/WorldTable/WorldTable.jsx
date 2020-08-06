@@ -25,14 +25,26 @@ const columns = [
     align: "left",
   },
   {
-    id: "casesSummary",
+    id: "cases",
     label: "Cases",
     minWidth: 50,
     align: "right",
   },
   {
-    id: "deathSummary",
+    id: "todayCases",
+    label: "Cases Today",
+    minWidth: 50,
+    align: "right",
+  },
+  {
+    id: "deaths",
     label: "Deaths",
+    minWidth: 50,
+    align: "right",
+  },
+  {
+    id: "todayDeaths",
+    label: "Deaths Today",
     minWidth: 50,
     align: "right",
   },
@@ -55,12 +67,6 @@ const columns = [
     align: "right",
   },
   {
-    id: "tests",
-    label: "Tests",
-    minWidth: 50,
-    align: "right",
-  },
-  {
     id: "casesPerOneMillion",
     label: "Cases/Million",
     minWidth: 50,
@@ -69,30 +75,6 @@ const columns = [
   {
     id: "deathsPerOneMillion",
     label: "Deaths/Million",
-    minWidth: 50,
-    align: "right",
-  },
-  {
-    id: "recoveredPerOneMillion",
-    label: "Recovered/Million",
-    minWidth: 50,
-    align: "right",
-  },
-  {
-    id: "activePerOneMillion",
-    label: "Active/Million",
-    minWidth: 50,
-    align: "right",
-  },
-  {
-    id: "criticalPerOneMillion",
-    label: "Critical/Million",
-    minWidth: 50,
-    align: "right",
-  },
-  {
-    id: "testsPerOneMillion",
-    label: "Tests/Million",
     minWidth: 50,
     align: "right",
   },
@@ -122,7 +104,7 @@ function StickyHeadTable() {
   };
 
   const fetchWorldData = async () => {
-    setRows(await fetchTableData());
+     setRows(await fetchTableData());
   };
 
   useEffect(() => {
@@ -216,7 +198,7 @@ if (rows === []) {
                 <TableRow>
                   {columns.map((column) => (
                     <TableCell
-                      key={column.id}
+                      key={column.country}
                       align={column.align}
                       style={{ minWidth: column.minWidth }}
                     >
@@ -226,7 +208,7 @@ if (rows === []) {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows
+                {rows && rows
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => {
                     return (
@@ -252,7 +234,7 @@ if (rows === []) {
               </TableBody>
             </Table>
           </TableContainer>
-          <TablePagination
+          {rows && <TablePagination
             rowsPerPageOptions={[20,50,100,150,200,300]}
             component="div"
             count={rows.length}
@@ -260,7 +242,7 @@ if (rows === []) {
             page={page}
             onChangePage={handleChangePage}
             onChangeRowsPerPage={handleChangeRowsPerPage}
-          />
+          />}
         </Paper>
       </div>
     </div>

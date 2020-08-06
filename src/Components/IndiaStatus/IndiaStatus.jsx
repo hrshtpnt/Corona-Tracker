@@ -6,7 +6,7 @@ import classnames from "classname";
 import Divider from '@material-ui/core/Divider';
 import MiniCard from '../MiniCard/MiniCard';
 import IndianStatesTable from '../IndianStatesTable/IndianStatesTable';
-import {Button} from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 function IndiaStatus() {
   const [indiaData, setIndiaData] = useState();
@@ -21,7 +21,7 @@ function IndiaStatus() {
   });
 
   const [stateTableData, setStateTableData] = useState([]);
-  const [loaders, setLoaders] = useState({loadingTextSummary: false, loadingTextDetailed: false});
+  const [loaders, setLoaders] = useState({ loadingTextSummary: false, loadingTextDetailed: false });
 
   const handleStateChange = (indianState, pos) => {
     //indiaData[0][2]['Andhra Pradesh'].districtData
@@ -38,9 +38,9 @@ function IndiaStatus() {
 
   const handleDistrictSelect = (district) => {
     setSelectedDistrict(district);
-    if (district !== '' ) {
-    const { name, position } = stateData;
-    const covidInfo = indiaData[0][position][name].districtData[district];
+    if (district !== '') {
+      const { name, position } = stateData;
+      const covidInfo = indiaData[0][position][name].districtData[district];
       setCoronaInfo({
         active: covidInfo.active || 0,
         recovered: covidInfo.recovered || 0,
@@ -51,24 +51,24 @@ function IndiaStatus() {
   };
 
   const handleShowSummary = () => {
-    setLoaders({...loaders, loadingTextSummary: true});
+    setLoaders({ ...loaders, loadingTextSummary: true });
     const fetchAPI = async () => {
       setStateTableData(await fetchIndianStatesReport());
-      setLoaders({...loaders, loadingTextSummary: false});
+      setLoaders({ ...loaders, loadingTextSummary: false });
     };
     fetchAPI();
   }
 
   const handleShowDetailed = () => {
-    setLoaders({...loaders, loadingTextDetailed: true});
+    setLoaders({ ...loaders, loadingTextDetailed: true });
     const fetchAPI = async () => {
       setIndiaData(await fetchIndiaData());
-      setLoaders({...loaders, loadingTextDetailed: false});
+      setLoaders({ ...loaders, loadingTextDetailed: false });
     };
     fetchAPI();
   }
-    return (
-      <React.Fragment>
+  return (
+    <React.Fragment>
       <div className={styles.stateDataSection}>
         <Divider />
         {stateTableData && stateTableData.length === 0 && <Button
@@ -78,24 +78,24 @@ function IndiaStatus() {
           onClick={handleShowSummary} >State Summary
         </Button>}
         {loaders.loadingTextSummary && <p>Loading...</p>}
-        { 
-        stateTableData && stateTableData.length>0 &&
-        <React.Fragment>
-        <br/>
-        <IndianStatesTable statesData={stateTableData}/>
-        </React.Fragment>}
-        <br/>
+        {
+          stateTableData && stateTableData.length > 0 &&
+          <React.Fragment>
+            <br />
+            <IndianStatesTable statesData={stateTableData} />
+          </React.Fragment>}
+        <br />
         <Divider />
       </div>
       {!indiaData &&
-      <Button
+        <Button
           variant="outlined"
           color="secondary"
           className={styles.buttonShowStateData}
           onClick={handleShowDetailed}>State Detailed
         </Button>
-        }
-        {loaders.loadingTextDetailed && <p>Loading...</p>}
+      }
+      {loaders.loadingTextDetailed && <p>Loading...</p>}
       {indiaData && <div className={styles.indiaStatus}>
         <div className={classnames(styles.indiaStatus, styles.selectedDataHeading)}>
           <FormControl className={styles.formControl}>
@@ -144,8 +144,8 @@ function IndiaStatus() {
         </div>}
       </div>
       }
-      </React.Fragment>
-    );
+    </React.Fragment>
+  );
 }
 
 export default IndiaStatus;

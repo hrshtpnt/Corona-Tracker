@@ -3,6 +3,7 @@ Tracking the impact of COVID-19 Globally
 Made using React JS
 
 # Deployed:
+https://coronatracker-harshit.netlify.app/
 https://hrshtpnt.github.io/Corona-Tracker/
 
 ## Summary
